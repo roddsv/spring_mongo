@@ -3,17 +3,24 @@ package com.rodrigo.workshopmongo.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable{
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+/* Document indica que a classe é uma collection do MongoDB (o collection é opcional depois, mas ele mapeia o nome da classe e joga dentro dela caso não haja */
+@Document(collection="user")
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
+	/* Id é colocado sobre o atributo que for a chave */
+	@Id
 	private String id;
 	private String name;
 	private String email;
-	
+
 	public User() {
 	}
-	
+
 	public User(String id, String name, String email) {
 		super();
 		this.id = id;
@@ -61,5 +68,5 @@ public class User implements Serializable{
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
-		
+
 }
